@@ -1,21 +1,45 @@
 import { QUERY_GAMES } from 'graphql/queries/games'
 
+export const noGamesMock = {
+  request: {
+    query: QUERY_GAMES,
+    variables: { limit: 15, where: {} }
+  },
+  result: {
+    data: {
+      games: [],
+      gamesConnection: {
+        values: [],
+        __typename: 'GameConnection'
+      }
+    }
+  }
+}
+
 export const gamesMock = {
-  request: { query: QUERY_GAMES, variables: { limit: 15, where: {} } },
+  request: {
+    query: QUERY_GAMES,
+    variables: { limit: 15, where: {} }
+  },
   result: {
     data: {
       games: [
         {
-          name: 'Dungeon Keeper Gold™',
-          slug: 'dungeon-keeper',
+          id: '1',
+          name: 'Sample Game',
+          slug: 'sample-game',
+          price: 518.39,
+          developers: [{ name: 'sample developer' }],
           cover: {
-            url: '/uploads/dungeon_keeper_556e256a5a.jpg'
+            url: 'sample-game.jpg'
           },
-          developers: [{ name: 'Bullfrog Productions' }],
-          price: 33.29,
           __typename: 'Game'
         }
-      ]
+      ],
+      gamesConnection: {
+        values: [{ id: '1' }, { id: '2' }],
+        __typename: 'GameConnection'
+      }
     }
   }
 }
@@ -23,22 +47,27 @@ export const gamesMock = {
 export const fetchMoreMock = {
   request: {
     query: QUERY_GAMES,
-    variables: { limit: 15, start: 1, where: {} }
+    variables: { limit: 15, where: {}, start: 1 }
   },
   result: {
     data: {
       games: [
         {
+          id: '2',
           name: 'Fetch More Game',
           slug: 'fetch-more',
+          price: 518.39,
+          developers: [{ name: 'sample developer' }],
           cover: {
-            url: '/uploads/dungeon_keeper_556e256a5a.jpg'
+            url: 'sample-game.jpg'
           },
-          developers: [{ name: 'Bullfrog Productions' }],
-          price: 33.29,
           __typename: 'Game'
         }
-      ]
+      ],
+      gamesConnection: {
+        values: [{ id: '1' }, { id: '2' }],
+        __typename: 'GameConnection'
+      }
     }
   }
 }
