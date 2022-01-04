@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
 import { Menu2 as MenuIcon } from '@styled-icons/remix-line/Menu2'
 import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
 import { Close as CloseIcon } from '@styled-icons/material-outlined/Close'
@@ -10,6 +9,8 @@ import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
 
 import * as S from './styles'
+import CartDropdown from 'components/CartDropdown'
+import UserDropdown from 'components/UserDropdown'
 
 export type MenuProps = {
   username?: string
@@ -17,6 +18,7 @@ export type MenuProps = {
 
 const Menu = ({ username }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  console.log(username)
 
   return (
     <S.Wrapper>
@@ -50,16 +52,26 @@ const Menu = ({ username }: MenuProps) => {
           <SearchIcon aria-label="Search" />
         </S.IconWrapper>
         <S.IconWrapper>
-          <ShoppingCartIcon aria-label="Shopping Cart" />
-        </S.IconWrapper>
-
-        {!username && (
           <MediaMatch greaterThan="medium">
+            <CartDropdown />
+          </MediaMatch>
+          <MediaMatch lessThan="medium">
+            <Link href="/cart" passHref>
+              <a>
+                <CartDropdown />
+              </a>
+            </Link>
+          </MediaMatch>
+        </S.IconWrapper>
+        <MediaMatch greaterThan="medium">
+          {!username ? (
             <Link href="/sign-in" passHref>
               <Button as="a">Sign In</Button>
             </Link>
-          </MediaMatch>
-        )}
+          ) : (
+            <UserDropdown username={username} />
+          )}
+        </MediaMatch>
       </S.MenuGroup>
 
       <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
@@ -68,11 +80,13 @@ const Menu = ({ username }: MenuProps) => {
           <Link href="/" passHref>
             <S.MenuLink>Home</S.MenuLink>
           </Link>
-          <S.MenuLink href="#">Explore</S.MenuLink>
+          <Link href="/games" passHref>
+            <S.MenuLink>Explore</S.MenuLink>
+          </Link>
           {!!username && (
             <>
-              <S.MenuLink href="#">My Account</S.MenuLink>
-              <S.MenuLink href="#">Wishlist</S.MenuLink>
+              <S.MenuLink href="/profile/me">My profile</S.MenuLink>
+              <S.MenuLink href="/wishlist">Wishlist</S.MenuLink>
             </>
           )}
         </S.MenuNav>
