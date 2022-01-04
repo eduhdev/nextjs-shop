@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     revalidate: 60,
     props: {
-      cover: game.cover?.src,
+      cover: game.cover?.src || '',
       gameInfo: {
         title: game.name,
         price: game.price,

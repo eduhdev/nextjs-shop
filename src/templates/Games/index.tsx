@@ -65,7 +65,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                     key={game.name}
                     title={game.name}
                     developer={game.developers[0].name}
-                    img={`http://localhost:1337${game.cover!.url}`}
+                    img={`${game.cover?.url}`}
                   />
                 ))}
               </Grid>
