@@ -1,3 +1,5 @@
+import { useCart } from 'hooks/use-cart'
+
 import Container from 'components/Container'
 import { Divider } from 'components/Divider'
 import { GameCardProps } from 'components/GameCard'
@@ -17,14 +19,10 @@ export type CartProps = {
 } & CartListProps &
   Pick<PaymentOptionsProps, 'cards'>
 
-const Cart = ({
-  recommendedGames,
-  recommendedHighlight,
-  items,
-  total,
-  cards
-}: CartProps) => {
+const Cart = ({ recommendedGames, recommendedHighlight, cards }: CartProps) => {
   const handlePayment = () => ({})
+
+  const { items } = useCart()
 
   return (
     <Base>
@@ -35,7 +33,7 @@ const Cart = ({
 
         {items?.length ? (
           <S.Content>
-            <CartList items={items} total={total} />
+            <CartList />
 
             <PaymentOptions cards={cards} handlePayment={handlePayment} />
           </S.Content>
