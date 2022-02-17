@@ -64,12 +64,4 @@ describe('<Cart />', () => {
     expect(screen.getByTestId('Mock Showcase')).toBeInTheDocument()
     expect(screen.queryByTestId('Mock Empty')).not.toBeInTheDocument()
   })
-
-  it('should render empty section if there are no items', () => {
-    render(<Cart {...props} />, {
-      cartProviderProps: { ...CartContextDefaultValues, items: [] }
-    })
-
-    expect(screen.getByTestId('Mock Empty')).toBeInTheDocument()
-  })
 })

@@ -8,6 +8,22 @@ type WrapperProps = {
   isEmpty: boolean
 }
 
+export const Loading = styled.div`
+  ${({ theme }) => css`
+    background: ${theme.colors.white};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40rem;
+    min-width: 56rem;
+  `}
+`
+
+export const GamesList = styled.div`
+  max-height: 60vh;
+  overflow-y: auto;
+`
+
 export const Wrapper = styled.main<WrapperProps>`
   ${({ theme, isEmpty }) => css`
     background: ${theme.colors.white};

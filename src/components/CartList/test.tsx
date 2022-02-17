@@ -32,6 +32,17 @@ describe('<CartList />', () => {
     expect(screen.getByText(/buy it now/i)).toBeInTheDocument()
   })
 
+  it('should render loading', () => {
+    render(<CartList hasButton />, {
+      cartProviderProps: {
+        ...CartContextDefaultValues,
+        loading: true
+      }
+    })
+
+    expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
+  })
+
   it('should render empty cart', () => {
     render(<CartList />)
 
