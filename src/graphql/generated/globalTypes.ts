@@ -22,6 +22,12 @@ export enum ENUM_COMPONENTPAGERIBBON_SIZE {
   small = "small",
 }
 
+export interface UsersPermissionsRegisterInput {
+  username: string;
+  email: string;
+  password: string;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

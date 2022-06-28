@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { LoaderAlt } from '@styled-icons/boxicons-regular/LoaderAlt'
 
-const Load = styled(LoaderAlt)`
+export const Load = styled(LoaderAlt)`
   ${({ theme }) => css`
     height: 50px;
     width: 50px;

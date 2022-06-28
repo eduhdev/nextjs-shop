@@ -3,6 +3,7 @@ import { darken } from 'polished'
 
 import * as TextFieldStyles from 'components/TextField/styles'
 import * as ButtonStyles from 'components/Button/styles'
+import { Load } from 'components/Loader'
 
 export const FormWrapper = styled.div`
   ${({ theme }) => css`
@@ -14,6 +15,11 @@ export const FormWrapper = styled.div`
       margin: ${theme.spacings.medium} auto ${theme.spacings.xsmall};
     }
   `}
+`
+
+export const FormLoading = styled(Load)`
+  color: #fff;
+  width: 4rem;
 `
 
 export const FormLink = styled.div`
