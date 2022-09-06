@@ -64,8 +64,6 @@ const FormForgotPassword = () => {
     setLoading(false)
   }
 
-  console.log(values.email)
-
   return (
     <FormWrapper>
       {success ? (
