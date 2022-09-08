@@ -38,6 +38,10 @@ exports[`<FormSignUp /> should render the form 1`] = `
   background: linear-gradient(180deg,#e35565 0%,#d958a6 50%);
 }
 
+.c7:focus {
+  outline: 1px dashed;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;

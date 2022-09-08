@@ -69,6 +69,10 @@ export const Wrapper = styled.button<WrapperProps>`
         : `linear-gradient(180deg, #e35565 0%, #d958a6 50%);`};
     }
 
+    &:focus {
+      outline: 1px dashed;
+    }
+
     ${!!size && wrapperModifiers[size](theme)}
     ${fullWidth && wrapperModifiers.fullWidth}
     ${hasIcon && wrapperModifiers.withIcon(theme)}

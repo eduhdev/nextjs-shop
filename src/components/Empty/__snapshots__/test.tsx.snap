@@ -31,6 +31,10 @@ exports[`<Empty /> should render correctly 1`] = `
   background: linear-gradient(180deg,#e35565 0%,#d958a6 50%);
 }
 
+.c4:focus {
+  outline: 1px dashed;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
