@@ -1,5 +1,8 @@
 import NextNProgress from 'nextjs-progressbar'
 
+import { DefaultSeo } from 'next-seo'
+import SEO from '../../next-seo.config'
+
 import { Provider as AuthProvider } from 'next-auth/client'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
@@ -29,9 +32,10 @@ function App({ Component, pageProps }: AppProps) {
                 <meta name="theme-color" content="#06092B" />
                 <meta
                   name="description"
-                  content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
+                  content="The best Game Store in the world!"
                 />
               </Head>
+              <DefaultSeo {...SEO} />
               <GlobalStyles />
               <NextNProgress
                 color="#f231a5"

@@ -11,7 +11,7 @@ const Footer = () => (
 
     <S.Content>
       <S.Column>
-        <Heading lineColor="secondary" lineBottom size="small">
+        <Heading lineColor="secondary" lineBottom size="small" color="black">
           Contact us
         </Heading>
 
@@ -22,11 +22,17 @@ const Footer = () => (
       </S.Column>
 
       <S.Column>
-        <Heading lineColor="secondary" lineBottom size="small">
+        <Heading
+          lineColor="secondary"
+          lineBottom
+          size="small"
+          color="black"
+          aria-labelledby="social media"
+        >
           Follow us
         </Heading>
 
-        <nav aria-labelledby="social media">
+        <nav id="social-media">
           <a href="instagram.com" target="_blank" rel="noopener,noreferrer">
             Instagram
           </a>
@@ -43,11 +49,17 @@ const Footer = () => (
       </S.Column>
 
       <S.Column>
-        <Heading lineColor="secondary" lineBottom size="small">
+        <Heading
+          lineColor="secondary"
+          lineBottom
+          size="small"
+          color="black"
+          aria-labelledby="resources"
+        >
           Links
         </Heading>
 
-        <nav aria-labelledby="footer resources">
+        <nav id="resources">
           <Link href="/">
             <a>Home</a>
           </Link>
@@ -59,8 +71,8 @@ const Footer = () => (
           </Link>
         </nav>
       </S.Column>
-      <S.Column>
-        <Heading lineColor="secondary" lineBottom size="small">
+      <S.Column aria-label="contact">
+        <Heading lineColor="secondary" lineBottom size="small" color="black">
           Location
         </Heading>
 

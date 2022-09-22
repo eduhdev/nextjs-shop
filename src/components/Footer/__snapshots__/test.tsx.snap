@@ -2,7 +2,7 @@
 
 exports[`<Footer /> should render 4 column topics 1`] = `
 .c5 {
-  color: #FAFAFA;
+  color: #030517;
   position: relative;
   margin-bottom: 3.2rem;
   font-size: 1.6rem;
@@ -41,11 +41,11 @@ exports[`<Footer /> should render 4 column topics 1`] = `
 .c3 a,
 .c3 span {
   display: block;
-  color: #8F8F8F;
+  color: #030517;
   -webkit-text-decoration: none;
   text-decoration: none;
   margin-bottom: 0.8rem;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .c3 a:hover {
@@ -164,7 +164,7 @@ exports[`<Footer /> should render 4 column topics 1`] = `
     >
       <h2
         class="c4 c5"
-        color="white"
+        color="black"
       >
         Contact us
       </h2>
@@ -188,12 +188,12 @@ exports[`<Footer /> should render 4 column topics 1`] = `
     >
       <h2
         class="c4 c5"
-        color="white"
+        color="black"
       >
         Follow us
       </h2>
       <nav
-        aria-labelledby="social media"
+        id="social-media"
       >
         <a
           href="instagram.com"
@@ -230,12 +230,12 @@ exports[`<Footer /> should render 4 column topics 1`] = `
     >
       <h2
         class="c4 c5"
-        color="white"
+        color="black"
       >
         Links
       </h2>
       <nav
-        aria-labelledby="footer resources"
+        id="resources"
       >
         <a
           href="/"
@@ -255,11 +255,12 @@ exports[`<Footer /> should render 4 column topics 1`] = `
       </nav>
     </div>
     <div
+      aria-label="contact"
       class="c3"
     >
       <h2
         class="c4 c5"
-        color="white"
+        color="black"
       >
         Location
       </h2>
