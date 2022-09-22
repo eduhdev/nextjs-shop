@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import Ribbon, { RibbonColors } from 'components/Ribbon'
@@ -12,7 +13,7 @@ export type GameCardProps = {
   slug: string
   title: string
   developer: string
-  img: string | undefined
+  img: string
   price: number
   promotionalPrice?: number
   favorite?: boolean
@@ -39,7 +40,7 @@ const GameCard = ({
     )}
     <Link href={`game/${slug}`} passHref>
       <S.ImageBox>
-        <img src={img} alt={title} />
+        <Image src={img} alt={title} layout="fill" />
       </S.ImageBox>
     </Link>
     <S.Content>

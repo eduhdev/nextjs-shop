@@ -3,8 +3,8 @@ import { screen, render } from 'utils/test-utils'
 import Highlight from '.'
 
 const props = {
-  title: 'Heading 1',
-  subtitle: 'Heading 2',
+  title: 'Heading-1',
+  subtitle: 'Heading-2',
   buttonLabel: 'Buy now',
   buttonLink: '/rdr2',
   backgroundImage: '/img/gta-san-andreas.jpg'
@@ -15,28 +15,29 @@ describe('<Highlight />', () => {
     render(<Highlight {...props} />)
 
     expect(
-      screen.getByRole('heading', { name: /heading 1/i })
+      screen.getByRole('heading', { name: /heading-1/i })
     ).toBeInTheDocument()
 
     expect(
-      screen.getByRole('heading', { name: /heading 2/i })
+      screen.getByRole('heading', { name: /heading-2/i })
     ).toBeInTheDocument()
 
     expect(screen.getByRole('link', { name: /buy now/i })).toBeInTheDocument()
   })
 
   it('should render background image', () => {
-    const { container } = render(<Highlight {...props} />)
+    render(<Highlight {...props} />)
 
-    expect(container.firstChild).toHaveStyle({
-      backgroundImage: `url(${props.backgroundImage})`
-    })
+    expect(screen.getByRole('img', { name: props.title })).toHaveAttribute(
+      'src',
+      props.backgroundImage
+    )
   })
 
   it('should render float image', () => {
     render(<Highlight {...props} floatImage="/float-image.png" />)
 
-    expect(screen.getByRole('img', { name: props.title })).toHaveAttribute(
+    expect(screen.getByRole('img', { name: props.subtitle })).toHaveAttribute(
       'src',
       '/float-image.png'
     )
