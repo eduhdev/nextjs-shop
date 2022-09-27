@@ -41,7 +41,7 @@ import '@testing-library/cypress/add-commands'
 
 Cypress.Commands.add('google', () => cy.visit('https://google.com'))
 
-Cypress.Commands.add('getByDatCy', (selector, ...args) => {
+Cypress.Commands.add('getByDataCy', (selector, ...args) => {
   return cy.get(`[data-cy="${selector}"]`, ...args)
 })
 
@@ -64,20 +64,47 @@ Cypress.Commands.add('shouldRenderBanner', () => {
   })
 })
 
-Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false, games = true }) => {
-  cy.getByDatCy(`${name}`).within(() => {
-    cy.findByRole('heading', { name }).should('exist')
+Cypress.Commands.add(
+  'shouldRenderShowcase',
+  ({ name, highlight = false, games = true }) => {
+    cy.getByDataCy(`${name}`).within(() => {
+      cy.findByRole('heading', { name }).should('exist')
 
-    cy.getByDatCy('highlight').should(highlight ? 'exist' : 'not.exist')
+      cy.getByDataCy('highlight').should(highlight ? 'exist' : 'not.exist')
 
-    if (highlight) {
-      cy.getByDatCy('highlight').within(() => {
-        cy.findByRole('link').should('have.attr', 'href')
-      })
-    }
+      if (highlight) {
+        cy.getByDataCy('highlight').within(() => {
+          cy.findByRole('link').should('have.attr', 'href')
+        })
+      }
 
-    if(games) {
-      cy.getByDatCy('game-card').should('have.length.gt', 0)
-    }
+      if (games) {
+        cy.getByDataCy('game-card').should('have.length.gt', 0)
+      }
+    })
+  }
+)
+
+Cypress.Commands.add('getFilterFields', (filter) => {
+  filter.map(({ label }) => {
+    cy.findByText(label).should('exist')
   })
+})
+
+Cypress.Commands.add('shouldBeGreaterThan', (value) => {
+  cy
+    .findByText(/^\$\d+(\.\d{1,2})?/)
+    .invoke('text')
+    .then($el => $el.replace('$', ''))
+    .then(parseFloat)
+    .should('be.gt', value)
+})
+
+Cypress.Commands.add('shouldBeLessThan', (value) => {
+  cy
+    .findByText(/^\$\d+(\.\d{1,2})?/)
+    .invoke('text')
+    .then($el => $el.replace('$', ''))
+    .then(parseFloat)
+    .should('be.lt', value)
 })

@@ -5,8 +5,8 @@ describe('Game Page', () => {
     cy.visit('/game/system-shock')
   })
 
-  it.skip('should render game page', () => {
-    cy.getByDatCy('game-info').within(() => {
+  it('should render game page', () => {
+    cy.getByDataCy('game-info').within(() => {
       cy.findByRole('heading', { name: /System Shock/i }).should('exist')
       cy.findByText(
         /Customers who pre-order this version of System Shock/i
@@ -23,13 +23,13 @@ describe('Game Page', () => {
     )
 
     // content
-    cy.getByDatCy('content').within(() => {
+    cy.getByDataCy('content').within(() => {
       cy.findByRole('heading', { name: /description/i }).should('exist')
     })
-    cy.getByDatCy('content').children().should('have.length.at.least', 2)
+    cy.getByDataCy('content').children().should('have.length.at.least', 2)
 
     // details
-    cy.getByDatCy('game-details').within(() => {
+    cy.getByDataCy('game-details').within(() => {
       cy.findByRole('heading', { name: /game details/i }).should('exist')
       cy.findByRole('heading', { name: /developer/i }).should('exist')
       cy.findByRole('heading', { name: /release date/i }).should('exist')
@@ -58,7 +58,7 @@ describe('Game Page', () => {
   })
 
   it('should add/remove game in cart', () => {
-    cy.getByDatCy('game-info').within(() => {
+    cy.getByDataCy('game-info').within(() => {
       cy.findByRole('button', { name: /add to cart/i }).click()
       cy.findByRole('button', { name: /remove from cart/i }).should('exist')
     })
@@ -68,7 +68,7 @@ describe('Game Page', () => {
       .should('have.text', 1)
       .click()
 
-    cy.getByDatCy('cart-list').within(() => {
+    cy.getByDataCy('cart-list').within(() => {
       cy.findByRole('heading', { name: /System Shock/i }).should('exist')
     })
 
@@ -76,7 +76,7 @@ describe('Game Page', () => {
       .first()
       .click()
 
-    cy.getByDatCy('game-info').within(() => {
+    cy.getByDataCy('game-info').within(() => {
       cy.findByRole('button', { name: /remove from cart/i }).click()
       cy.findByRole('button', { name: /add to cart/i }).should('exist')
     })
