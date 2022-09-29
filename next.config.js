@@ -8,7 +8,7 @@ module.exports = withPWA({
     disable: !isProd
   },
   images: {
-    domains: ['res.cloudinary.com']
+    domains: ['res.cloudinary.com', 'source.unsplash.com']
   },
   webpack5: true
 })
