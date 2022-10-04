@@ -8,7 +8,7 @@ const CART_KEY = 'cartItems'
 
 export type CartItem = {
   id: string
-  img: string
+  img: string | undefined
   title: string
   price: string
 }

@@ -13,7 +13,7 @@ export type GameCardProps = {
   slug: string
   title: string
   developer: string
-  img: string
+  img: string | undefined
   price: number
   promotionalPrice?: number
   favorite?: boolean
@@ -40,7 +40,7 @@ const GameCard = ({
     )}
     <Link href={`game/${slug}`} passHref>
       <S.ImageBox>
-        <Image src={img} alt={title} layout="fill" />
+        <Image src={img || '/default'} alt={title} layout="fill" />
       </S.ImageBox>
     </Link>
     <S.Content>
