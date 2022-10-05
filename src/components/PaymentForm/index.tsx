@@ -12,6 +12,8 @@ import { useCart } from 'hooks/use-cart'
 import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 import { FormLoading } from 'components/Form'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 export type PaymentFormProps = {
   session: Session
 }
@@ -71,9 +73,10 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
+
     setLoading(true)
 
-    if (freeGames) {
+    if (freeGames || isProduction) {
       saveOrder()
 
       push('/success')
@@ -107,25 +110,28 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
             Payment
           </Heading>
 
-          {freeGames ? (
-            <S.FreeGames>Only free games, click buy now and enjoy!</S.FreeGames>
-          ) : (
-            <>
-              <CardElement
-                options={{
-                  hidePostalCode: true,
-                  style: { base: { fontSize: '16px' } }
-                }}
-                onChange={handleChange}
-              />
+          {!isProduction &&
+            (freeGames ? (
+              <S.FreeGames>
+                Only free games, click buy now and enjoy!
+              </S.FreeGames>
+            ) : (
+              <>
+                <CardElement
+                  options={{
+                    hidePostalCode: true,
+                    style: { base: { fontSize: '16px' } }
+                  }}
+                  onChange={handleChange}
+                />
 
-              {error && (
-                <S.Error>
-                  <ErrorOutline size={20} /> {error}
-                </S.Error>
-              )}
-            </>
-          )}
+                {error && (
+                  <S.Error>
+                    <ErrorOutline size={20} /> {error}
+                  </S.Error>
+                )}
+              </>
+            ))}
         </S.Body>
         <S.Footer>
           <Button as="a" fullWidth minimal>
@@ -134,7 +140,10 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
           <Button
             fullWidth
             icon={loading ? <FormLoading /> : <ShoppingCart />}
-            disabled={loading || (!freeGames && (!!error || disabled))}
+            disabled={
+              !isProduction &&
+              (loading || (!freeGames && (!!error || disabled)))
+            }
           >
             {!loading && <span>Buy now</span>}
           </Button>
