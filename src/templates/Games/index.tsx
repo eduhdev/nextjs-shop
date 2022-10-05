@@ -56,30 +56,27 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
         />
 
         <section>
-          {data?.games.length ? (
-            <>
-              <Grid>
-                {data?.games.map((game) => (
-                  <GameCard
-                    {...game}
-                    key={game.name}
-                    title={game.name}
-                    developer={game.developers[0].name}
-                    img={`${game.cover?.url}`}
-                  />
-                ))}
-              </Grid>
-              {hasMoreGames &&
-                (loading ? (
-                  <Loader />
-                ) : (
-                  <S.ShowMore role="button" onClick={handleShowMore}>
-                    <p>Show More</p>
-                    <ArrowDown size={35} />
-                  </S.ShowMore>
-                ))}
-            </>
-          ) : (
+          <>
+            <Grid>
+              {data?.games.map((game) => (
+                <GameCard
+                  {...game}
+                  key={game.name}
+                  title={game.name}
+                  developer={game.developers[0].name}
+                  img={`${game.cover?.url}`}
+                />
+              ))}
+            </Grid>
+            {loading && <Loader />}
+            {!loading && hasMoreGames && (
+              <S.ShowMore role="button" onClick={handleShowMore}>
+                <p>Show More</p>
+                <ArrowDown size={35} />
+              </S.ShowMore>
+            )}
+          </>
+          {!loading && !data?.games.length && (
             <Empty
               title=":("
               description="We didn't find any games with this filter"
