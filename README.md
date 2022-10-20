@@ -1,5 +1,5 @@
 
-This is a NextJS store concept to work and study with some new technologies.
+This is a NextJS store concept to work and study some new technologies.
 
 ## What is inside?
 
